@@ -89,3 +89,38 @@ cd /path/to/some/dir
 
 # print path from root to current dir
 pwd
+
+# service <serviceName> <status | start | stop> - проверка / запуск / остановка служб, может потребоваться sudo
+service mongod status
+service mongod start
+service mongod stop
+
+#############################################################
+
+# Работа с дисками
+
+# [s:sata|h:old ide][d:device][a:letter]
+# sda - 1st SATA HDD/SSD
+# sdb - 2nd SATA HDD/SSD
+# sdc - 3rd SATA HDD/SSD ...
+
+# fdisk [ -l:list ] - информация о диске
+sudo fdisk -l
+
+# lsblk - короткая информация о диске
+lsblk
+
+# blkid <dev/partition> - узнать uuid диска
+sudo blkid /dev/sda1
+
+# cfdisk <dev/disk> - просмотр, создание, редактирование разделов диска
+sudo cfdisk /dev/sdb
+
+# mkfs.<fsType> [ -f:format ] <dev/partition> - make file system
+sudo mkfs.ntfs -f /dev/sdb1
+
+# прописываем новый диск в таблицу дисков
+sudo nano /etc/fstab
+
+# mount <mount/path> - монтируем новый диск
+sudo mount media/hdd2
